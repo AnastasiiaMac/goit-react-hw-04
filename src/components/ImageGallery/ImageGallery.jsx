@@ -1,11 +1,11 @@
 import ImageCard from "../ImageCard/ImageCard";
-import css from
+import css from "./ImageGallery.module.css";
 const ImageGallery = ({ data }) => {
   return (
-    <ul>
+    <ul className={css.galleryList}>
       {data.map((datum) => {
         return (
-          <li key={datum.id}>
+          <li className={css.item} key={datum.id}>
             <div>
               <ImageCard url={datum.urls.small} name={datum.alt_description} />
             </div>

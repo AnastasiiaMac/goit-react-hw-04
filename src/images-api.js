@@ -10,7 +10,7 @@ const fetchImagesBySearchQuery = async (searchQuery) => {
       query: searchQuery,
     },
   });
-  console.log(response.data.results);
+  console.log(response.data);
 
   return response.data.results;
 };
