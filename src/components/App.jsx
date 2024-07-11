@@ -5,15 +5,26 @@ import Loader from "./Loader/Loader";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreButton from "./LoadMoreButton/LoadMoreButton";
+import Modal from "react-modal";
+import ImageModal from "./ImageModal/ImageModal";
 export default function App() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(999);
   const [searchTopic, setSearchTopic] = useState("");
-
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  Modal.setAppElement("#root");
+  function openModal(image) {
+    setSelectedImage(image);
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+    setSelectedImage(null);
+  }
   const handleSearch = async (searchQuery) => {
     setImages([]);
     setPage(1);
@@ -34,7 +45,7 @@ export default function App() {
         setTotalPages(data.total_pages);
 
         setImages((prevImages) => {
-          return [...prevImages, ...data];
+          return [...prevImages, ...data.results];
         });
       } catch (error) {
         setError(true);
@@ -47,12 +58,21 @@ export default function App() {
   return (
     <div>
       <SearchBar onSearch={handleSearch} />
+
       {loading && <Loader />}
       {error && <ErrorMessage />}
-      {images.length > 0 && <ImageGallery data={images} />}
-      {images.length > 0 && !loading && (
+      {images.length > 0 && (
+        <ImageGallery data={images} openModal={openModal} />
+      )}
+      {images.length > 0 && !loading && page < totalPages && (
         <LoadMoreButton onClick={handleLoadMore} />
       )}
+      {page > totalPages && <p>No images to load</p>}
+      <ImageModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        image={selectedImage}
+      />
     </div>
   );
 }

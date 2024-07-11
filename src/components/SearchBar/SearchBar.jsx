@@ -7,7 +7,6 @@ const SearchBar = ({ onSearch }) => {
     evt.preventDefault();
     const form = evt.target;
     const searchQuery = form.elements.searchWord.value;
-    console.log(searchQuery);
     if (searchQuery.trim() === "") {
       toast.error("Search field cannot be empty");
       return;

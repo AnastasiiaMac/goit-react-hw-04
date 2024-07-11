@@ -47,6 +47,9 @@ button {
 li {
   list-style: none;
 }
+p {
+  text-align: center;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

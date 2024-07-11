@@ -13,9 +13,6 @@ const fetchImagesBySearchQuery = async (searchQuery, currentPage) => {
     },
   });
 
-  console.log(response);
-  console.log(response.data.results);
-
-  return response.data.results;
+  return response.data;
 };
 export default fetchImagesBySearchQuery;

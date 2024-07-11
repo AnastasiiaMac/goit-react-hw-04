@@ -4,3 +4,6 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.item {
+  cursor: pointer;
+}
