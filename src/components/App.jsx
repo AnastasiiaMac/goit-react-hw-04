@@ -4,9 +4,9 @@ import fetchImagesBySearchQuery from "../images-api";
 import Loader from "./Loader/Loader";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
-import LoadMoreButton from "./LoadMoreButton/LoadMoreButton";
 import Modal from "react-modal";
 import ImageModal from "./ImageModal/ImageModal";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 export default function App() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -65,7 +65,7 @@ export default function App() {
         <ImageGallery data={images} openModal={openModal} />
       )}
       {images.length > 0 && !loading && page < totalPages && (
-        <LoadMoreButton onClick={handleLoadMore} />
+        <LoadMoreBtn onClick={handleLoadMore} />
       )}
       {page > totalPages && <p>No images to load</p>}
       <ImageModal

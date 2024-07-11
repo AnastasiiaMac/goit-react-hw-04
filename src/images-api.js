@@ -12,7 +12,7 @@ const fetchImagesBySearchQuery = async (searchQuery, currentPage) => {
       per_page: 20,
     },
   });
-
+  console.log(response.data.results);
   return response.data;
 };
 export default fetchImagesBySearchQuery;

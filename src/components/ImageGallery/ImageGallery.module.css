@@ -5,5 +5,10 @@
   justify-content: center;
 }
 .item {
-  cursor: pointer;
+  background-color: #8b7cce4a;
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+.item:hover {
+  transform: scale(1.05);
 }
